@@ -121,7 +121,7 @@ if __name__ == "__main__":
             you will end up being throttled when you reach rate limit until you
             wait, about an hour or more
             '''
-            if(rapidrefresh<5):
+            if(rapidrefresh<3):
                 rapidrefresh+=1
                 time.sleep(random.uniform(0.2, 0.6))
             else:
