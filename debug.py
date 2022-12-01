@@ -1,42 +1,34 @@
 import time
 from datetime import date
-import filters
 import userdata.serviceAreaIds as serviceAreaIds
 
 def scan_print(block):
     block_length = (block["endTime"] - block["startTime"]) / 3600
     block_price = block["rateInfo"]["priceAmount"]
-    block_headstart = block["startTime"] - int(time.time())
     block_rate = block_price / block_length
     try:
-        #if block["hidden"] == False:
-        if filters.print_filter(block):
-            with open ("scandata/recent-scans", "a") as r:
-                print(serviceAreaIds.stationlist[block['serviceAreaId']], file=r)
-                print(date.fromtimestamp(block['startTime']).strftime('%A'), time.strftime('%m/%d/%Y %I:%M %p', time.localtime(block['startTime'])), file=r)
-                print(round(block_length, 1), 'Hours', file=r)
-                print('$',block_price, file=r)
-                print(round(block_rate, 2), '/hr', file=r),
-                print(time.strftime('%m/%d/%Y %I:%M:%S %p'), file=r)
-                print('------------------------------------', file=r)
+        with open ("scandata/recent-scans", "a") as r:
+            print(serviceAreaIds.stationlist[block['serviceAreaId']], file=r)
+            print(date.fromtimestamp(block['startTime']).strftime('%A'), time.strftime('%m/%d/%Y %I:%M %p', time.localtime(block['startTime'])), file=r)
+            print(round(block_length, 1), 'Hours', file=r)
+            print('$',block_price, file=r)
+            print(round(block_rate, 2), '/hr', file=r),
+            print(time.strftime('%m/%d/%Y %I:%M:%S %p'), file=r)
+            print('------------------------------------', file=r)
     except KeyError:
         print('scan print glitch')
         
 def baserate_print(block):
     block_length = (block["endTime"] - block["startTime"]) / 3600
     block_price = block["rateInfo"]["priceAmount"]
-    block_headstart = block["startTime"] - int(time.time())
-    block_rate = block_price / block_length
     try:
-        #if block["hidden"] == False:
-        if filters.baserate_filter(block):
-            with open ("scandata/baserate", "a") as b:
-                print(serviceAreaIds.stationlist[block['serviceAreaId']], file=b)
-                print(date.fromtimestamp(block['startTime']).strftime('%A'), time.strftime('%m/%d/%Y %I:%M %p', time.localtime(block['startTime'])), file=b)
-                print(round(block_length, 1), 'Hours', file=b)
-                print('$',block_price, file=b)
-                print(time.strftime('%m/%d/%Y %I:%M:%S %p'), file=b)
-                print('------------------------------------', file=b)
+        with open ("scandata/baserate", "a") as b:
+            print(serviceAreaIds.stationlist[block['serviceAreaId']], file=b)
+            print(date.fromtimestamp(block['startTime']).strftime('%A'), time.strftime('%m/%d/%Y %I:%M %p', time.localtime(block['startTime'])), file=b)
+            print(round(block_length, 1), 'Hours', file=b)
+            print('$',block_price, file=b)
+            print(time.strftime('%m/%d/%Y %I:%M:%S %p'), file=b)
+            print('------------------------------------', file=b)
     except KeyError:
         print('baserate print glitch')
 
