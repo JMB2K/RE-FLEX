@@ -8,7 +8,7 @@ As with anything PROCEED AT YOUR OWN RISK
 
 You can generate a dictionary for station names using runforstationlist.py, but only after initializing the script for the first time (since you will generate your 'user' and 'pw' file for your credentials. You may also make these files yourself and put the required info email in 'user' and password in 'pw' no extension, or just write it into the code itself in getAuth.py. Working to make stationlist generation more streamlined)
 
-Setup for Unique Identifiers:
+Setup for Unique Identifiers(assumes android device):
 
 Download MITMProxy: https://mitmproxy.org/
 
@@ -23,6 +23,8 @@ You need to have your phone and proxy device on the same network, and set your w
 and then on your phone go to mitm.it: 
 
 ![SmartSelect_20221202_121831_Chromefu](https://user-images.githubusercontent.com/31253518/205350198-241e8075-ea6c-4b40-a726-986b5494a3df.jpg)
+
+For android, click android (there is IOS as well but I don't have an Iphone to do experimentation on, so I can't help here)
 
 List of URLs to get from proxy for setup: 
 NOTE: You have to connect your phone to the proxy and the links will THEN populate in the proxy. You have to surf the app while the phone is connected to proxy to find the links listed here.
