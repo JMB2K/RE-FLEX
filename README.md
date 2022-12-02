@@ -44,7 +44,7 @@ Device info has:
 
 "device-type"
 
-"os-version"
+"os-version" = "api-level"
 
 "device_model"
 
