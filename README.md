@@ -15,7 +15,13 @@ Download MITMProxy: https://mitmproxy.org/
 Install, once installed, you will be using MITMWeb:
 ![image](https://user-images.githubusercontent.com/31253518/205303077-bc21e9d3-be1d-4168-a8de-1493c1c5d231.png)
 
-List of URLs to get from proxy for setup:
+You need to have your phone and proxy device on the same network, and set your wifi on your phone to connect to your proxy devices IP:
+![SmartSelect_20221202_083202_Settings](https://user-images.githubusercontent.com/31253518/205349387-2099f501-bc80-48da-a882-8fc8e9d4391e.jpg)
+
+and then on your phone go to mitm.it:
+![SmartSelect_20221202_121831_Chrome](https://user-images.githubusercontent.com/31253518/205349388-f1c7fe2d-7711-49ac-9e4e-c5743aaea2c6.jpg)
+
+List of URLs to get from proxy for setup(these links are not for clicking):
 
 Device Info (not sure for iPhone):https://switchyard-na.amazon.com/distribution/app/AmazonFlexAndroidConfig
 ![image](https://user-images.githubusercontent.com/31253518/205306830-2bd6ea18-d4b9-4a91-bc84-2bf74d21b8b0.png)
