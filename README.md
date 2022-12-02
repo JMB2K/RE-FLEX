@@ -24,7 +24,8 @@ and then on your phone go to mitm.it:
 
 ![SmartSelect_20221202_121831_Chromefu](https://user-images.githubusercontent.com/31253518/205350198-241e8075-ea6c-4b40-a726-986b5494a3df.jpg)
 
-List of URLs to get from proxy for setup(these links are not for clicking):
+List of URLs to get from proxy for setup: 
+NOTE: You have to connect your phone to the proxy and the links will THEN populate in the proxy. You have to surf the app while the phone is connected to proxy to find the links listed here.
 
 Device Info (not sure for iPhone):https://switchyard-na.amazon.com/distribution/app/AmazonFlexAndroidConfig 
 
