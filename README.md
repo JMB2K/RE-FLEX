@@ -12,36 +12,45 @@ Setup for Unique Identifiers:
 
 Download MITMProxy: https://mitmproxy.org/
 
-Install, once installed, you will be using MITMWeb:
+Install, once installed, you will be using MITMWeb: 
+
 ![image](https://user-images.githubusercontent.com/31253518/205303077-bc21e9d3-be1d-4168-a8de-1493c1c5d231.png)
 
-You need to have your phone and proxy device on the same network, and set your wifi on your phone to connect to your proxy devices IP:
+You need to have your phone and proxy device on the same network, and set your wifi on your phone to connect to your proxy devices IP: 
+
 ![SmartSelect_20221202_083202_Settings](https://user-images.githubusercontent.com/31253518/205349387-2099f501-bc80-48da-a882-8fc8e9d4391e.jpg)
 
-and then on your phone go to mitm.it:
-![SmartSelect_20221202_121831_Chrome](https://user-images.githubusercontent.com/31253518/205349388-f1c7fe2d-7711-49ac-9e4e-c5743aaea2c6.jpg)
+and then on your phone go to mitm.it: 
+
+![SmartSelect_20221202_121831_Chromefu](https://user-images.githubusercontent.com/31253518/205350198-241e8075-ea6c-4b40-a726-986b5494a3df.jpg)
 
 List of URLs to get from proxy for setup(these links are not for clicking):
 
-Device Info (not sure for iPhone):https://switchyard-na.amazon.com/distribution/app/AmazonFlexAndroidConfig
+Device Info (not sure for iPhone):https://switchyard-na.amazon.com/distribution/app/AmazonFlexAndroidConfig 
+
 ![image](https://user-images.githubusercontent.com/31253518/205306830-2bd6ea18-d4b9-4a91-bc84-2bf74d21b8b0.png)
 Be sure to change the view to JSON so you can read it
 
-ServiceAreaId:https://flex-capacity-na.amazon.com/eligibleServiceAreas
+ServiceAreaId:https://flex-capacity-na.amazon.com/eligibleServiceAreas 
+
 ![image](https://user-images.githubusercontent.com/31253518/205308239-b3785fa5-8b18-42ca-83df-fb76e42436d2.png)
 This is available in one of the other URLs
 This is for MIAMI-WEST PALM BEACH by the way
 
-Device Serial Number:https://odcs-na-extern.amazon.com/external/GetActiveDeviceForUserExternal
+Device Serial Number:https://odcs-na-extern.amazon.com/external/GetActiveDeviceForUserExternal 
+
 ![image](https://user-images.githubusercontent.com/31253518/205308763-3f65750b-7776-4cb0-a596-faa31ca910b8.png)
 "deviceTypeId" tells what device you are using, this one is for Android
 
-For header_data.py and json_data.py(if filters applied):https://flex-capacity-na.amazon.com/GetOffersForProviderPost
+For header_data.py and json_data.py(if filters applied):https://flex-capacity-na.amazon.com/GetOffersForProviderPost 
+
 ![image](https://user-images.githubusercontent.com/31253518/205309982-90d70031-e8b3-4abb-bf45-1d4076287964.png)
-Copy the curl to here and get this:
+Copy the curl to here and get this: 
+
 ![image](https://user-images.githubusercontent.com/31253518/205310692-610d6a31-7013-477f-bd52-0548eaca01ba.png)
 
-After you get the required info for these:
+After you get the required info for these: 
+
 ![image](https://user-images.githubusercontent.com/31253518/205313197-583ab7f7-19ee-4875-8a63-713c4ea8146c.png)
 
 The two Device URLs are needed for registration data,
