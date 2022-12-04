@@ -7,8 +7,8 @@ import filters, debug, live_updates, authCycle
 try:
     import userdata.serviceAreaIds as serviceAreaIds
 except:
-   print('No service area list, please use runforstationlist.py, and be sure to remove any utf-8 characters')
-   exit()
+    print('Please use runforstationlist.py after your first run, and be sure to remove any utf-8 characters manually for now. Working on automating this.')
+    pass
 
 timehigh = 3.8
 timelow = 3.2
@@ -22,7 +22,7 @@ rapidrefresh = rapidvalue
 
 logging.basicConfig(format="%(asctime)s \n\t%(message)s", datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 
-yag = yagmail.SMTP(user="extra-email", password="app-password")
+yag = yagmail.SMTP(user="39omul@gmail.com", password="sgzmmzrjgcthuxeq")
 subject = "Work Available"
 
 session = requests.Session()
@@ -35,7 +35,7 @@ def email_alert(block):
     block_start = f"{date.fromtimestamp(block['startTime']).strftime('%A')} {time.strftime('%m/%d/%Y %I:%M %p', time.localtime(block['startTime']))}"
     station_name = serviceAreaIds.stationlist[block['serviceAreaId']]
     body = f"**CAUGHT A BLOCK**\n\nLocation: {station_name}\nPay: ${block_price}\nStart Time: {block_start}\nBlock Length: {block_length} hours\nRate: {round(block_rate, 2)}"
-    yag.send(to='main-email', subject=subject, contents=body)
+    yag.send(to='lumo93@gmail.com', subject=subject, contents=body)
 
 print('Scanning started at', time.strftime('%I:%M:%S %p'))
 

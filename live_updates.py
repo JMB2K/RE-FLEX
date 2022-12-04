@@ -1,6 +1,10 @@
 import time
 from datetime import date
-import userdata.serviceAreaIds as serviceAreaIds
+
+try:
+    import userdata.serviceAreaIds as serviceAreaIds
+except:
+    pass
 
 
 

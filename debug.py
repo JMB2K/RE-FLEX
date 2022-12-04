@@ -4,8 +4,7 @@ from datetime import date
 try:
     import userdata.serviceAreaIds as serviceAreaIds
 except:
-   print('No service area list, please use runforstationlist.py, and be sure to remove any utf-8 characters')
-   exit()
+    pass
 
 def scan_print(block):
     block_length = (block["endTime"] - block["startTime"]) / 3600

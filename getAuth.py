@@ -112,7 +112,7 @@ def manualTokenRefresh():
     return(token)
 
 def getUserLogin():
-    email = input('Enter Email :')
+    email = input('Enter Email........ :')
     password = getpass.getpass('Enter Password :')
     return(email, password)
 
