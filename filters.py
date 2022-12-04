@@ -1,6 +1,25 @@
 import time
 
+#Station Filter Values
+#These are for more fine tuning of station filters, you can make this for however many stations
+#upper and lower hours let you set split filters depending on the length of the block. starting at 1 and ending at 5, at incriments of .5
+#rate is self explanitory, split between the two hour typs
+#minimum price override allows you to accept lower rates if the total price is higher
+# Be sure to add a letter at the beggining of the variables (for _lowprice, you could do T_lowprice, D_lowprice, etc. for all if you want multiple station filters)
+#Sample
 
+#time before start in hours
+_headstart = 2
+#rate for upper hours
+_mainrate = 31
+#upper hour minimum
+_mainlength = 4
+#rate for lower hours
+_subrate = 31
+#lower hour maximum
+_sublength = 3.5
+#minimum price override
+_lowprice = 100
 
 def simple_filter(block):
     # Filtering out blocks that you don't want.
@@ -25,20 +44,21 @@ def advanced_filter(block):
     block_rate = block_price / block_length
     block_station = block['serviceAreaId']
     # You can copy the code below and past for however many stations you want special filters for
+    # Be sure to add a letter at the beggining of the variables (for _lowprice, you could do T_lowprice, D_lowprice, etc. for all)
     # identify Station
-    if block_station == 'a5e1a8d5-c368-4cb8-a2c6-3b71b3eb8178' and block_headstart >= 0:#Sample Station
-        if block_rate >= 0:
-            return (
-                not block["hidden"]
-                #and block_price >= 0
-                and block_length >= 0
-            )
+    if block['serviceAreaId'] == '8c81c54f-6a60-405c-b095-43d9b9bc99c2' and block_headstart >= _headstart*3600 and not block["hidden"]:#Sample
+        if block_price <= _lowprice:
+            if block_length >= _mainlength:
+                return (
+                    block_rate >= _mainrate
+                )
+            if block_length <= _sublength:
+                return (
+                    block_rate >= _subrate
+                )
         else:
-            return (
-                not block["hidden"]
-                and block_rate >= 0
-                #and block_price >= 0
-                and block_length <= 0
+            return(
+                block_price >= _lowprice
             )
 
 def print_filter(block):
