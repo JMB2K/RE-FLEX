@@ -1,4 +1,4 @@
-import requests, json, time, logging ,random ,yagmail
+import requests, json, time, logging, random, yagmail_alert
 from datetime import datetime, date
 import header_data
 import json_data
@@ -22,20 +22,7 @@ rapidrefresh = rapidvalue
 
 logging.basicConfig(format="%(asctime)s \n\t%(message)s", datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 
-yag = yagmail.SMTP(user="39omul@gmail.com", password="sgzmmzrjgcthuxeq")
-subject = "Work Available"
-
 session = requests.Session()
-
-
-def email_alert(block):
-    block_length = (block["endTime"] - block["startTime"]) / 3600
-    block_price = block["rateInfo"]["priceAmount"]
-    block_rate = block_price / block_length
-    block_start = f"{date.fromtimestamp(block['startTime']).strftime('%A')} {time.strftime('%m/%d/%Y %I:%M %p', time.localtime(block['startTime']))}"
-    station_name = serviceAreaIds.stationlist[block['serviceAreaId']]
-    body = f"**CAUGHT A BLOCK**\n\nLocation: {station_name}\nPay: ${block_price}\nStart Time: {block_start}\nBlock Length: {block_length} hours\nRate: {round(block_rate, 2)}"
-    yag.send(to='lumo93@gmail.com', subject=subject, contents=body)
 
 print('Scanning started at', time.strftime('%I:%M:%S %p'))
 
@@ -94,7 +81,7 @@ def accept_block(block):
     if accept.status_code == 200:
         logging.info(f"Caught The Block For {block['rateInfo']['priceAmount']}")
         debug.caught_print(block)
-        email_alert(block)
+        #yagmail_alert.email_alert(block)
     else:
         logging.info(f"Missed The Block For {block['rateInfo']['priceAmount']}")
         debug.missed_print(block)
