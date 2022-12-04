@@ -1,10 +1,9 @@
 import requests
 import uuid
+from uuid import UUID
 import getpass
+import header_data
 import time
-import userdata.header_data as header_data
-from datetime import datetime
-import userdata.registration_data as registration_data
 
 def getTwoStepVerificationChallengeUrl(challengeRequest):
     verificationChallengeCode = (
@@ -19,6 +18,12 @@ def getTwoStepVerificationChallengeUrl(challengeRequest):
         + f"&arb={verificationChallengeCode}"
     )
 
+def uuid_to_hex(uuid):
+    return UUID(uuid).hex
+
+
+def uuid_make():
+    return(str(uuid.uuid4()))
 
 def getAuthToken():
     user, pw = loginCode()
@@ -56,13 +61,13 @@ def getAuthToken():
         "user_context_map": {"frc": ""},
         "requested_token_type": ["bearer", "mac_dms", "website_cookies"],
     }
-
+    #'''
     try:
-        payload["registration_data"] = registration_data.registration_data
-        authHeaders["User-Agent"] = header_data.headers["User-Agent"]
+        payload["registration_data"]["device_serial"] = check_device_serial()
     except:
-        raise Exception('No File')
-    
+        make_device_serial()
+        payload["registration_data"]["device_serial"] = check_device_serial()
+    #'''
     response = requests.post(authUrl, headers=authHeaders, json=payload).json()
     try:
         return (
@@ -74,6 +79,8 @@ def getAuthToken():
         )
     
     except Exception as e:
+        #print(response)
+        #
         twoStepVerificationChallengeUrl = getTwoStepVerificationChallengeUrl(response)
         print(
             f"\n\033[1m{twoStepVerificationChallengeUrl}\033[0m "
@@ -82,7 +89,18 @@ def getAuthToken():
         'Try the link above(preferably on the device running the code, but I am not sure),\n'
         'if it does not work, you can get your token from proxy and add it bellow\n'
         )
+        #
         raise
+
+def check_device_serial():
+    with open("userdata/device_serial", "r") as d:
+        dserial = d.read()
+    return(dserial)
+
+def make_device_serial():
+    with open("userdata/device_serial", "w") as s:
+        dserial = input('Enter deviceSerialNumber:')
+        print(dserial, end='', file=s)
 
 def requestIdSelfSingleUse():
     return (

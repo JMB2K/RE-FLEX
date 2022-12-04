@@ -1,8 +1,10 @@
 import getAuth
-import userdata.header_data as header_data
+import header_data
+import json_data
 import getServiceAreas
 import time
 import debug
+import uuid
 
 
 
@@ -49,3 +51,40 @@ def authCycle():
         except:
             debug.blocked_print()
             manual_token()
+
+
+def instance_check():
+    with open("userdata/instance_id", "r") as i:
+        instanceId = i.read()
+        return(instanceId)
+
+def instance_make():
+    with open("userdata/instance_id", "w") as i:
+        instanceId = str(uuid.uuid4())
+        print(instanceId, end='', file=i)
+
+def instanceCycle():
+    try:
+        instance_check()
+    except:
+        instance_make()
+        instance_check()
+
+def areaId_check():
+    with open("userdata/areaId.py", "r") as i:
+        areaId = i.read()
+        return(areaId)
+
+def areaId_grab():
+    with open("userdata/areaId.py", "w") as i:
+        areaId = getServiceAreas.getEligibleServiceAreas()
+        print('areaId =', areaId, end='', file=i)
+
+def areaIdCycle():
+    try:
+        import userdata.areaId as areaId
+    except:
+        areaId_grab()
+        import userdata.areaId as areaId
+        json_data.search_json_data["serviceAreaIds"] = areaId.areaId
+    json_data.search_json_data["serviceAreaIds"] = areaId.areaId

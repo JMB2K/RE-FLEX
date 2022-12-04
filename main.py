@@ -1,16 +1,21 @@
 import requests, json, time, logging ,random ,yagmail
 from datetime import datetime, date
-import userdata.serviceAreaIds as serviceAreaIds
-import userdata.header_data as header_data
-import userdata.json_data as json_data
+import header_data
+import json_data
 import filters, debug, live_updates, authCycle
 
-timehigh = 4.8
-timelow = 3.8
+try:
+    import userdata.serviceAreaIds as serviceAreaIds
+except:
+   print('No service area list, please use runforstationlist.py, and be sure to remove any utf-8 characters')
+   exit()
+
+timehigh = 3.8
+timelow = 3.2
 
 rapidvalue = 3
 
-rapidtimehigh = 0.4
+rapidtimehigh = 0.3
 rapidtimelow = 0.2
 
 rapidrefresh = rapidvalue
@@ -99,7 +104,9 @@ def accept_block(block):
 
 if __name__ == "__main__":
 
+    authCycle.instanceCycle()
     authCycle.authCycle()
+    authCycle.areaIdCycle()
 
     keepItUp = True
     while keepItUp:
