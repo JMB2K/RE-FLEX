@@ -1,7 +1,11 @@
 import yagmail
-import userdata.serviceAreaIds as serviceAreaIds
 from datetime import date
 import time
+
+try:
+    import userdata.serviceAreaIds as serviceAreaIds
+except:
+    pass
 
 yag = yagmail.SMTP(user="extra-email", password="app-password")
 subject = "Work Available"
