@@ -1,4 +1,3 @@
-import yagmail
 from datetime import date
 import time
 
@@ -7,7 +6,15 @@ try:
 except:
     pass
 
-yag = yagmail.SMTP(user="extra-email", password="app-password")
+try:
+    import yagmail
+except:
+    pass
+try:
+    yag = yagmail.SMTP(user="extra-email", password="app-password")
+except:
+    pass
+
 subject = "Work Available"
 
 def email_alert(block):
@@ -17,4 +24,7 @@ def email_alert(block):
     block_start = f"{date.fromtimestamp(block['startTime']).strftime('%A')} {time.strftime('%m/%d/%Y %I:%M %p', time.localtime(block['startTime']))}"
     station_name = serviceAreaIds.stationlist[block['serviceAreaId']]
     body = f"**CAUGHT A BLOCK**\n\nLocation: {station_name}\nPay: ${block_price}\nStart Time: {block_start}\nBlock Length: {block_length} hours\nRate: {round(block_rate, 2)}"
-    yag.send(to='main-email', subject=subject, contents=body)
+    try:
+        yag.send(to='main-email', subject=subject, contents=body)
+    except:
+        pass
