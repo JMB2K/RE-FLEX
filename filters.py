@@ -47,7 +47,7 @@ def advanced_filter(block):
     # Be sure to add a letter at the beggining of the variables (for _lowprice, you could do T_lowprice, D_lowprice, etc. for all)
     # identify Station
     if block['serviceAreaId'] == '8c81c54f-6a60-405c-b095-43d9b9bc99c2' and block_headstart >= _headstart*3600 and not block["hidden"]:#Sample
-        if block_price <= _lowprice:
+        if block_price < _lowprice:
             if block_length >= _mainlength:
                 return (
                     block_rate >= _mainrate
